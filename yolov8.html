@@ -1,0 +1,37 @@
+<script type="text/javascript">
+  RED.nodes.registerType('obj detection', {
+    category: 'function',
+    color: '#C0DEED',
+    icon: 'font-awesome/fa-eye',
+    defaults: {
+      name: { value: "" },
+      topk: { value: 1, required: true, validate: RED.validators.number() },
+      iouThreshold: { value: 0.45, required: true, validate: RED.validators.number() },
+      scoreThreshold: { value: 0.25, required: true, validate: RED.validators.number() },
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "obj detection";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="obj detection">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+      <label for="node-input-topk"><i class="fa fa-hashtag"></i> Top-K</label>
+      <input type="text" id="node-input-topk" placeholder="1">
+    </div>
+    <div class="form-row">
+      <label for="node-input-iouthreshold"><i class="fa fa-object-group"></i> IoU Threshold</label>
+      <input type="text" id="node-input-iouthreshold" placeholder="0.45">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="obj detection">
+    <p>Object detection using YOLOv8.</p>
+</script>
