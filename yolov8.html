@@ -7,7 +7,7 @@
       name: { value: "" },
       topk: { value: 1, required: true, validate: RED.validators.number() },
       iouThreshold: { value: 0.45, required: true, validate: RED.validators.number() },
-      scoreThreshold: { value: 0.25, required: true, validate: RED.validators.number() },
+      confidenceThreshold: { value: 0.25, required: true, validate: RED.validators.number() },
     },
     inputs: 1,
     outputs: 1,
@@ -24,14 +24,23 @@
     </div>
     <div class="form-row">
       <label for="node-input-topk"><i class="fa fa-hashtag"></i> Top-K</label>
-      <input type="text" id="node-input-topk" placeholder="1">
+      <input type="text" id="node-input-topk" placeholder="1" min="1">
     </div>
     <div class="form-row">
-      <label for="node-input-iouthreshold"><i class="fa fa-object-group"></i> IoU Threshold</label>
-      <input type="text" id="node-input-iouthreshold" placeholder="0.45">
+      <label for="node-input-iouThreshold"><i class="fa fa-object-group"></i> IoU Threshold</label>
+      <input type="text" id="node-input-iouThreshold" placeholder="0.45">
+    </div>
+    <div class="form-row">
+      <label for="node-input-confidenceThreshold"><i class="fa fa-star"></i> Confidence Threshold</label>
+      <input type="text" id="node-input-confidenceThreshold" placeholder="0.25">
     </div>
 </script>
 
 <script type="text/html" data-help-name="obj detection">
     <p>Object detection using YOLOv8.</p>
+    <p>Input: Image</p>
+    <p>Output: Detected objects</p>
+    <p>Top-K: Number of objects to detect</p>
+    <p>IoU Threshold: Intersection over Union threshold</p>
+    <p>Confidence Threshold: Confidence threshold</p>
 </script>

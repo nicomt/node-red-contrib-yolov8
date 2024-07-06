@@ -3,8 +3,16 @@ const Yolov8 = require('./lib/yolov8');
 module.exports = function (RED) {
   function yolov8Run(config) {
     RED.nodes.createNode(this, config);
+    const topk = config.topk || 1;
+    const iouThreshold = config.iouThreshold || 0.5;
+    const confidenceThreshold = config.confidenceThreshold || 0.25;
     const node = this;
-    const yolov8 = new Yolov8();
+    const yolov8 = new Yolov8(
+      null,
+      topk,
+      iouThreshold,
+      confidenceThreshold
+    );
     node.on('input', async function (msg, send, done) {
       send = send || function () { node.send.apply(node, arguments) };
       done = done || function (err) { if (err) { node.error(err, msg) } };
