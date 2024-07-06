@@ -17,7 +17,7 @@ module.exports = function (RED) {
       send = send || function () { node.send.apply(node, arguments) };
       done = done || function (err) { if (err) { node.error(err, msg) } };
       yolov8.detect(msg.payload).then((result) => {
-        const unique = [...new Set(result.map((r) => r.label))];
+        const unique = [...new Set(result.map((r) => r.className))];
         msg.detected = unique;
         msg.annotations = result;
         send(msg);
