@@ -3,9 +3,9 @@ const Yolov8 = require('./lib/yolov8');
 module.exports = function (RED) {
   function yolov8Run(config) {
     RED.nodes.createNode(this, config);
-    const topk = config.topk || 1;
-    const iouThreshold = config.iouThreshold || 0.5;
-    const confidenceThreshold = config.confidenceThreshold || 0.25;
+    const topk = parseInt(config.topk || 1);
+    const iouThreshold = parseFloat(config.iouThreshold || 0.5);
+    const confidenceThreshold = parseFloat(config.confidenceThreshold || 0.25);
     const node = this;
     const yolov8 = new Yolov8(
       null,
