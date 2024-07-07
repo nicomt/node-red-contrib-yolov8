@@ -16,13 +16,20 @@ module.exports = function (RED) {
     node.on('input', async function (msg, send, done) {
       send = send || function () { node.send.apply(node, arguments) };
       done = done || function (err) { if (err) { node.error(err, msg) } };
+      node.status({ fill: "blue", shape: "dot", text: "processing" });
       yolov8.detect(msg.payload).then((result) => {
         const unique = [...new Set(result.map((r) => r.className))];
+        if (unique.length > 0) {
+          node.status({ fill: "green", shape: "dot", text: `${unique.length} detected` });
+        } else {
+          node.status({ fill: "yellow", shape: "dot", text: "no detection" });
+        }
         msg.detected = unique;
         msg.annotations = result;
         send(msg);
         done();
       }).catch((err) => {
+        node.status({ fill: "red", shape: "ring", text: "error" });
         done(err);
       });
     });
