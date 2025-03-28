@@ -5,6 +5,7 @@
     icon: 'font-awesome/fa-eye',
     defaults: {
       name: { value: "" },
+      modelPath: { value: "", required: false },
       topk: { value: 1, required: true, validate: RED.validators.number() },
       iouThreshold: { value: 0.45, required: true, validate: RED.validators.number() },
       confidenceThreshold: { value: 0.25, required: true, validate: RED.validators.number() },
@@ -21,6 +22,10 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-modelPath"><i class="fa fa-folder"></i> Model Path</label>
+        <input type="text" id="node-input-modelPath" placeholder="Optional: Path to model directory">
     </div>
     <div class="form-row">
       <label for="node-input-topk"><i class="fa fa-hashtag"></i> Top-K</label>
@@ -40,6 +45,7 @@
     <p>Object detection using YOLOv8.</p>
     <p>Input: Image</p>
     <p>Output: Detected objects</p>
+    <p>Model Path: Optional directory path to model and classes.txt</p>
     <p>Top-K: Number of objects to detect</p>
     <p>IoU Threshold: Intersection over Union threshold</p>
     <p>Confidence Threshold: Confidence threshold</p>
