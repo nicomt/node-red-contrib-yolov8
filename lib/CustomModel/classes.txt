@@ -1,1 +1,2 @@
-
+fresh_apple
+rotten_apple
