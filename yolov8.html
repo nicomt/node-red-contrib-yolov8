@@ -5,6 +5,7 @@
     icon: 'font-awesome/fa-eye',
     defaults: {
       name: { value: "" },
+      modelPath: { value: "", required: false },
       topk: { value: 1, required: true, validate: RED.validators.number() },
       iouThreshold: { value: 0.45, required: true, validate: RED.validators.number() },
       confidenceThreshold: { value: 0.25, required: true, validate: RED.validators.number() },
@@ -19,10 +20,6 @@
 
 <script type="text/html" data-template-name="obj detection">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-    <div class="form-row">
       <label for="node-input-topk"><i class="fa fa-hashtag"></i> Top-K</label>
       <input type="text" id="node-input-topk" placeholder="1" min="1">
     </div>
@@ -34,13 +31,22 @@
       <label for="node-input-confidenceThreshold"><i class="fa fa-star"></i> Confidence Threshold</label>
       <input type="text" id="node-input-confidenceThreshold" placeholder="0.25">
     </div>
+    <div class="form-row">
+      <label for="node-input-modelPath"><i class="fa fa-folder"></i> Model Path</label>
+      <input type="text" id="node-input-modelPath" placeholder="Path to onnx model">
+    </div>
+        <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
 </script>
 
 <script type="text/html" data-help-name="obj detection">
     <p>Object detection using YOLOv8.</p>
-    <p>Input: Image</p>
-    <p>Output: Detected objects</p>
-    <p>Top-K: Number of objects to detect</p>
-    <p>IoU Threshold: Intersection over Union threshold</p>
-    <p>Confidence Threshold: Confidence threshold</p>
+    <p><b>Input:</b> Image</p>
+    <p><b>Output:</b> Detected objects</p>
+    <p><b>Top-K:</b> Number of objects to detect</p>
+    <p><b>IoU Threshold:</b> Intersection over Union threshold</p>
+    <p><b>Confidence Threshold:</b> Confidence threshold</p>
+    <p><b>Model Path:</b> Optional path to onnx model. Custom class names will be loaded from file classes.txt or &lt;filename&gt;.classes.txt if it exists in the same directory as the model</p>
 </script>
